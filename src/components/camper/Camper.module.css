@@ -27,7 +27,6 @@
 .data {
   display: flex;
   flex-direction: column;
-  align-content: space-between;
 }
 
 .star {
@@ -39,17 +38,15 @@
 .rating {
   display: flex;
   flex-direction: row;
+  font-family: "Inter", sans-serif;
+  line-height: 1.5;
   height: 24px;
   gap: 20px;
+  padding-left: 0;
 }
 
-.nav {
+.review {
   text-decoration: underline;
-  color: #101828;
-  font-family: "Inter", sans-serif;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 1.5;
   text-decoration-skip-ink: none;
 }
 
@@ -85,11 +82,16 @@
   font-size: 16px;
   line-height: 1.5;
   letter-spacing: -0.01em;
+  cursor: pointer;
   color: #fff;
   border-radius: 200px;
   padding: 16px 40px;
   width: 166px;
   height: 56px;
   background: #e44848;
-  margin-top: 20px;
+  margin-top: 30px;
+}
+
+.btn:hover {
+  background: #d84343;
 }

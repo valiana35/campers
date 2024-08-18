@@ -1,0 +1,20 @@
+.star {
+    color: #ffc531;
+    width: 16px;
+    height: 16px;
+  }
+  
+  .rating {
+    display: flex;
+    flex-direction: row;
+    font-family: "Inter", sans-serif;
+    line-height: 1.5;
+    height: 24px;
+    gap: 20px;
+    padding-left: 0;
+  }
+  
+  .review {
+    text-decoration: underline;
+    text-decoration-skip-ink: none;
+  }

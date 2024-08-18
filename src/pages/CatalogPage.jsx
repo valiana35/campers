@@ -1,28 +1,44 @@
 import { useDispatch, useSelector } from "react-redux";
 import {
+  selectCamper,
   selectCampers,
   selectError,
   selectIsLoading,
+  selectIsVisible,
 } from "../redux/campers/selectors";
 import { getCampers } from "../redux/campers/operations";
 import { useEffect, useState } from "react";
 import CampersList from "../components/campersList/CampersList";
 import Loader from "../components/Loader";
+import LoadMoreBtn from "../components/loadMoreBtn/LoadMoreBtn";
 
-function CatalogPage() {
+function CatalogPage(camper) {
   const dispatch = useDispatch();
   const campers = useSelector(selectCampers);
   const isLoading = useSelector(selectIsLoading);
+  const error = useSelector(selectError);
+  const isVisible = useSelector(selectIsVisible);
+  const [page, setPage] = useState(1);
+  let limit = 4;
 
   useEffect(() => {
-    dispatch(getCampers());
-  }, [dispatch]);
+    dispatch(getCampers({ limit, page }));
+  }, [dispatch, limit, page]);
+
+  const onLoadMore = () => {
+    dispatch(setPage(page + 1));
+  };
 
   return (
     <div>
       {isLoading && <Loader />}
+      {error && <p>Something went wrong...</p>}
       {campers && <CampersList />}
-
+      {!isVisible && (
+        <LoadMoreBtn onClick={onLoadMore} disabled={isLoading}>
+          {isLoading ? "Loading" : "Load more"}
+        </LoadMoreBtn>
+      )}
     </div>
   );
 }

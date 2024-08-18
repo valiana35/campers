@@ -8,6 +8,12 @@ import { IoBedOutline } from "react-icons/io5";
 import { BsWind } from "react-icons/bs";
 import { FaHeart } from "react-icons/fa";
 import css from "./Camper.module.css";
+import { useState } from "react";
+import CamperModal from "../CamperModal";
+import CamperDetails from "../camperDetails/CamperDetails";
+import { selectCamper } from "../../redux/campers/selectors";
+import { useDispatch, useSelector } from "react-redux";
+import { getCamperById } from "../../redux/campers/operations";
 
 const Camper = ({
   _id,
@@ -23,23 +29,39 @@ const Camper = ({
   engine,
   details,
 }) => {
+  const [showModal, setShowModal] = useState(false);
+  const dispatch = useDispatch();
+  const openModal = () => {
+    dispatch(getCamperById(_id))
+    setShowModal(true);
+  };
+  const closeModal = () => {
+    setShowModal(false);
+  };
+
+  const camper = useSelector(selectCamper);
+
   return (
-    <div key={_id} className={css.container}>
+    <div className={css.container}>
       <div>
         <img src={gallery[0]} alt={name} className={css.img} />
       </div>
       <div className={css.data}>
         <h2 className={css.title}>
-          {name} <span>€{price}.00 <FaHeart /></span>
-        </h2>
-        <div className={css.rating}>
-          <a href="reviews" className={css.nav}>
-            <LiaStarSolid className={css.star}/> {rating}({reviews.length} reviews)
-          </a>
+          {name}{" "}
           <span>
-            <LuMapPin /> {location}
+            €{price}.00 <FaHeart />
           </span>
-        </div>
+        </h2>
+        <ul className={css.rating}>
+          <li className={css.review}>
+            <LiaStarSolid className={css.star} /> {rating}({reviews.length}{" "}
+            reviews)
+          </li>
+          <li>
+            <LuMapPin /> {location}
+          </li>
+        </ul>
         <p className={css.text}>{description.slice(0, 74)}...</p>
         <ul className={css.list}>
           <li className={css.item}>
@@ -61,9 +83,12 @@ const Camper = ({
             {details.airConditioner && <BsWind />} AC
           </li>
         </ul>
-        <button type="button" className={css.btn}>
+        <button className={css.btn} onClick={openModal}>
           Show more
         </button>
+        <CamperModal showModal={showModal} closeModal={closeModal}>
+          <CamperDetails camper={camper}/>
+        </CamperModal>
       </div>
     </div>
   );
