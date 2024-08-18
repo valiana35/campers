@@ -1,21 +1,25 @@
-import { lazy } from 'react';
-import './App.css';
-import { Route, Routes } from 'react-router-dom';
+import { lazy, Suspense } from "react";
+import "./App.css";
+import { Route, Routes } from "react-router-dom";
+import Navigation from "./components/navigation/Navigation.jsx";
 
-const HomePage = lazy(() => import('./pages/HomePage'));
-const CatalogPage = lazy(() => import('./pages/CatalogPage'));
-const FavoritesPage = lazy(() => import('./pages/FavoritesPage'));
+const HomePage = lazy(() => import("./pages/HomePage.jsx"));
+const CatalogPage = lazy(() => import("./pages/CatalogPage.jsx"));
+const FavoritesPage = lazy(() => import("./pages/FavoritesPage.jsx"));
 
-function App() {
-    return (
-        <div>
+const App = () => {
+  return (
+    <div>
+      <Navigation />
+        <Suspense>
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/catalog" element={<CatalogPage />} />
             <Route path="/favorites" element={<FavoritesPage />} />
           </Routes>
-        </div>
-      );
-}
+        </Suspense>
+    </div>
+  );
+};
 
-export default App
+export default App;

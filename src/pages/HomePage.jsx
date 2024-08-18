@@ -1,9 +1,8 @@
-import Header from '../components/header/header';
-import css from './HomePage.module.css';
-
 const HomePage = () => {
     return (
-        <div className={css.header}><Header /></div>
+        <div>
+            <img src='https://ftp.goit.study/img/campers-test-task/1-1.webp' alt='Cruise America C-21'/>
+        </div>
     )
 }
 
