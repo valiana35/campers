@@ -1,6 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
 import {
-  selectCamper,
   selectCampers,
   selectError,
   selectIsLoading,
@@ -12,7 +11,7 @@ import CampersList from "../components/campersList/CampersList";
 import Loader from "../components/Loader";
 import LoadMoreBtn from "../components/loadMoreBtn/LoadMoreBtn";
 
-function CatalogPage(camper) {
+function CatalogPage({ camper }) {
   const dispatch = useDispatch();
   const campers = useSelector(selectCampers);
   const isLoading = useSelector(selectIsLoading);
@@ -33,10 +32,10 @@ function CatalogPage(camper) {
     <div>
       {isLoading && <Loader />}
       {error && <p>Something went wrong...</p>}
-      {campers && <CampersList />}
+      {campers && <CampersList camper={camper}/>}
       {!isVisible && (
         <LoadMoreBtn onClick={onLoadMore} disabled={isLoading}>
-          {isLoading ? "Loading" : "Load more"}
+          {isLoading ? <Loader /> : "Load more"}
         </LoadMoreBtn>
       )}
     </div>

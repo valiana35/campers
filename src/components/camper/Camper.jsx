@@ -11,83 +11,63 @@ import css from "./Camper.module.css";
 import { useState } from "react";
 import CamperModal from "../CamperModal";
 import CamperDetails from "../camperDetails/CamperDetails";
-import { selectCamper } from "../../redux/campers/selectors";
-import { useDispatch, useSelector } from "react-redux";
-import { getCamperById } from "../../redux/campers/operations";
 
-const Camper = ({
-  _id,
-  gallery,
-  name,
-  price,
-  rating,
-  reviews,
-  location,
-  description,
-  adults,
-  transmission,
-  engine,
-  details,
-}) => {
+const Camper = (camper) => {
   const [showModal, setShowModal] = useState(false);
-  const dispatch = useDispatch();
   const openModal = () => {
-    dispatch(getCamperById(_id))
     setShowModal(true);
   };
   const closeModal = () => {
     setShowModal(false);
   };
 
-  const camper = useSelector(selectCamper);
-
   return (
-    <div className={css.container}>
+    <div key={camper._Id} className={css.container}>
       <div>
-        <img src={gallery[0]} alt={name} className={css.img} />
+        <img src={camper.gallery[0]} alt={camper.name} className={css.img} />
       </div>
       <div className={css.data}>
         <h2 className={css.title}>
-          {name}{" "}
+          {camper.name}{" "}
           <span>
-            €{price}.00 <FaHeart />
+            €{camper.price}.00 <FaHeart />
           </span>
         </h2>
         <ul className={css.rating}>
           <li className={css.review}>
-            <LiaStarSolid className={css.star} /> {rating}({reviews.length}{" "}
+            <LiaStarSolid className={css.star} /> {camper.rating}({camper.reviews.length}{" "}
             reviews)
           </li>
           <li>
-            <LuMapPin /> {location}
+            <LuMapPin /> {camper.location}
           </li>
         </ul>
-        <p className={css.text}>{description.slice(0, 74)}...</p>
+        <p className={css.text}>{camper.description.slice(0, 68)}...</p>
         <ul className={css.list}>
           <li className={css.item}>
-            <IoPeopleOutline /> {adults} adults
+            <IoPeopleOutline /> {camper.adults} adults
           </li>
           <li className={css.item}>
-            <TbAutomaticGearbox /> {transmission}
+            <TbAutomaticGearbox /> {camper.transmission}
           </li>
           <li className={css.item}>
-            <MdOutlineLocalGasStation /> {engine}
+            <MdOutlineLocalGasStation /> {camper.engine}
           </li>
           <li className={css.item}>
-            {details.kitchen && <TbToolsKitchen2 />} kitchen
+            {camper.details.kitchen && <TbToolsKitchen2 />} kitchen
           </li>
           <li className={css.item}>
-            <IoBedOutline /> {details.beds} beds
+            <IoBedOutline /> {camper.details.beds} beds
           </li>
           <li className={css.item}>
-            {details.airConditioner && <BsWind />} AC
+            {camper.details.airConditioner && <BsWind />} AC
           </li>
         </ul>
         <button className={css.btn} onClick={openModal}>
           Show more
         </button>
         <CamperModal showModal={showModal} closeModal={closeModal}>
-          <CamperDetails camper={camper}/>
+          <CamperDetails camper={camper} />
         </CamperModal>
       </div>
     </div>

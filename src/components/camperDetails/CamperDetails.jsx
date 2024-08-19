@@ -3,29 +3,32 @@ import css from "./CamperDetails.module.css";
 import { LiaStarSolid } from "react-icons/lia";
 import { LuMapPin } from "react-icons/lu";
 
-const CamperDetails = ({
-  gallery,
-  name,
-  price,
-  rating,
-  reviews,
-  location,
-  description,
-}) => {
+const CamperDetails = (camper) => {
   return (
-    <div>
-      <h2>{name}</h2>
+    <div key={camper._id}>
+      <h2>{camper.name}</h2>
       <ul className={css.rating}>
         <li className={css.review}>
-          <LiaStarSolid className={css.star} /> {rating}({reviews} reviews)
+          <LiaStarSolid className={css.star} /> {camper.rating}({camper.reviews}{" "}
+          reviews)
         </li>
         <li>
-          <LuMapPin /> {location}
+          <LuMapPin /> {camper.location}
         </li>
       </ul>
-      <p>€{price}.00</p>
-      <div>{gallery}</div>
-      <p>{description}</p>
+      <p>€{camper.price}.00</p>
+      <ul className={css.gallery}>
+        <li key={[0]}>
+          <img src={camper.gallery} alt={camper.name} className={css.img} />
+        </li>
+        <li key={[1]}>
+          <img src={camper.gallery} alt={camper.name} className={css.img} />
+        </li>
+        <li key={[2]}>
+          <img src={camper.gallery} alt={camper.name} className={css.img} />
+        </li>
+      </ul>
+      <p>{camper.description}</p>
       <div>
         <Link to="features" className="linkFeatures">
           Features
