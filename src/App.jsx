@@ -1,7 +1,8 @@
 import { lazy, Suspense } from "react";
 import "./App.css";
-import { Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 import Navigation from "./components/navigation/Navigation.jsx";
+import Loader from "./components/Loader.jsx";
 
 const HomePage = lazy(() => import("./pages/HomePage.jsx"));
 const CatalogPage = lazy(() => import("./pages/CatalogPage.jsx"));
@@ -11,11 +12,12 @@ const App = () => {
   return (
     <div>
       <Navigation />
-        <Suspense>
+        <Suspense fallback={<Loader />}>
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/catalog" element={<CatalogPage />} />
             <Route path="/favorites" element={<FavoritesPage />} />
+            <Route path="*" element={<Navigate to="/" />} />
           </Routes>
         </Suspense>
     </div>

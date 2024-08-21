@@ -12,7 +12,20 @@ import { useState } from "react";
 import CamperModal from "../CamperModal";
 import CamperDetails from "../camperDetails/CamperDetails";
 
-const Camper = (camper) => {
+const Camper = ({ advert }) => {
+  const {
+    gallery,
+    name,
+    price,
+    rating,
+    reviews,
+    location,
+    description,
+    adults,
+    transmission,
+    engine,
+    details: { kitchen, beds, airConditioner },
+  } = advert;
   const [showModal, setShowModal] = useState(false);
   const openModal = () => {
     setShowModal(true);
@@ -22,52 +35,47 @@ const Camper = (camper) => {
   };
 
   return (
-    <div key={camper._Id} className={css.container}>
+    <div className={css.container}>
       <div>
-        <img src={camper.gallery[0]} alt={camper.name} className={css.img} />
+        <img src={gallery[0]} alt={name} className={css.img} />
       </div>
       <div className={css.data}>
         <h2 className={css.title}>
-          {camper.name}{" "}
+          {name}{" "}
           <span>
-            €{camper.price}.00 <FaHeart />
+            €{price}.00 <FaHeart />
           </span>
         </h2>
         <ul className={css.rating}>
           <li className={css.review}>
-            <LiaStarSolid className={css.star} /> {camper.rating}({camper.reviews.length}{" "}
-            reviews)
+            <LiaStarSolid className={css.star} /> {`${rating}(${reviews.length} reviews)`}
           </li>
           <li>
-            <LuMapPin /> {camper.location}
+            <LuMapPin /> {location}
           </li>
         </ul>
-        <p className={css.text}>{camper.description.slice(0, 68)}...</p>
+        <p className={css.text}>{description.slice(0, 68)}...</p>
         <ul className={css.list}>
           <li className={css.item}>
-            <IoPeopleOutline /> {camper.adults} adults
+            <IoPeopleOutline /> {adults} adults
           </li>
           <li className={css.item}>
-            <TbAutomaticGearbox /> {camper.transmission}
+            <TbAutomaticGearbox /> {transmission}
           </li>
           <li className={css.item}>
-            <MdOutlineLocalGasStation /> {camper.engine}
+            <MdOutlineLocalGasStation /> {engine}
           </li>
+          <li className={css.item}>{kitchen && <TbToolsKitchen2 />} kitchen</li>
           <li className={css.item}>
-            {camper.details.kitchen && <TbToolsKitchen2 />} kitchen
+            <IoBedOutline /> {beds} beds
           </li>
-          <li className={css.item}>
-            <IoBedOutline /> {camper.details.beds} beds
-          </li>
-          <li className={css.item}>
-            {camper.details.airConditioner && <BsWind />} AC
-          </li>
+          <li className={css.item}>{airConditioner && <BsWind />} AC</li>
         </ul>
         <button className={css.btn} onClick={openModal}>
           Show more
         </button>
         <CamperModal showModal={showModal} closeModal={closeModal}>
-          <CamperDetails camper={camper} />
+          <CamperDetails advert={advert} />
         </CamperModal>
       </div>
     </div>

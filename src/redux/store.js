@@ -1,8 +1,8 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { campersReducer } from "./campers/slice";
+import { advertsReducer } from "./campers/slice";
 
 export const store = configureStore({
   reducer: {
-    advert: campersReducer,
+    adverts: advertsReducer,
   },
 });

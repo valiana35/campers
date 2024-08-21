@@ -1,9 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { getCampers } from "./operations";
 
-const campersSlice = createSlice({
-  name: "advert",
-  initialState: { advert: [], isLoading: false, error: null },
+const advertsSlice = createSlice({
+  name: "adverts",
+  initialState: { adverts: [], isLoading: false, error: null },
   extraReducers: (builder) =>
     builder
       .addCase(getCampers.pending, (state) => {
@@ -12,7 +12,7 @@ const campersSlice = createSlice({
       })
       .addCase(getCampers.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.advert = action.payload;
+        state.adverts = action.payload;
       })
       .addCase(getCampers.rejected, (state, action) => {
         state.isLoading = false;
@@ -20,4 +20,4 @@ const campersSlice = createSlice({
       }),
 });
 
-export const campersReducer = campersSlice.reducer;
+export const advertsReducer = advertsSlice.reducer;
