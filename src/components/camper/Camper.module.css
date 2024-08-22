@@ -22,6 +22,11 @@
   justify-content: space-between;
 }
 
+.price {
+  display: flex;
+  flex-direction: row;
+}
+
 .data {
   display: flex;
   flex-direction: column;
@@ -88,4 +93,15 @@
 
 .btn:hover {
   background: #d84343;
+}
+
+.heart {
+  width: 25px;
+  height: 24px;
+}
+
+.favHeart {
+  color: #e44848;
+  width: 25px;
+  height: 24px;
 }
