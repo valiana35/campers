@@ -3,18 +3,16 @@ import { createSlice } from "@reduxjs/toolkit";
 const favoritesCampersSlice = createSlice({
   name: "favorite",
   initialState: {
-    adverts: [],
+    adverts: JSON.parse(localStorage.getItem("favorites")) || [],
   },
-  redusers: {
+  reducers: {
     toggleFavorite(state, action) {
-      const index = state.adverts.findIndex(
-        (advert) => advert._id === action.payload._id
-      );
-      if (index === -1) {
-        state.adverts.push(action.payload);
+      if (state.adverts.includes(action.payload)) {
+        state.adverts = state.adverts.filter(_id => _id !== action.payload);
       } else {
-        state.adverts.splice(index, 1);
+        state.adverts.push(action.payload);
       }
+      localStorage.setItem("favorite", JSON.stringify(state.adverts));
     },
   },
 });

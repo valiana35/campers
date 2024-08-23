@@ -25,7 +25,11 @@ function CatalogPage() {
   }, [dispatch, limit, page]);
 
   const onLoadMore = () => {
-    dispatch(setPage(page + 1));
+    setPage(prevPage => {
+      const nextPage = prevPage +1;
+      dispatch(getCampers({page: nextPage}));
+      return nextPage;
+    })
   };
 
   return (

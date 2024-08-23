@@ -12,11 +12,13 @@ const FavoritesPage = () => {
   );
 
   return (
-    <div>
+    <ul style={{marginTop: "80px"}}>
       {favoriteCampers.map((advert) => (
-        <Camper key={advert._id} {...adverts} />
+        <li key={advert._id} style={{marginTop: "20px"}}>
+          <Camper advert={advert} />
+        </li>
       ))}
-    </div>
+    </ul>
   );
 };
 export default FavoritesPage;

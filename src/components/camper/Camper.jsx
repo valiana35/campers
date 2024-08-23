@@ -18,7 +18,6 @@ import { FaHeart } from "react-icons/fa6";
 
 const Camper = ({ advert }) => {
   const {
-    _id,
     gallery,
     name,
     price,
@@ -45,10 +44,10 @@ const Camper = ({ advert }) => {
   const isFavorite = favoriteCampers.includes(advert._id);
 
   const handleFavorites = () => {
-    dispatch(toggleFavorite(advert));
+    dispatch(toggleFavorite(advert._id));
   };
   return (
-    <div className={css.container} key={_id}>
+    <div className={css.container}>
       <div>
         <img src={gallery[0]} alt={name} className={css.img} />
       </div>
@@ -57,8 +56,8 @@ const Camper = ({ advert }) => {
           <h2>{name}</h2>
           <div className={css.price}>
             <h2>€{price}.00</h2>
-            <button onClick={handleFavorites} advert={_id}>
-              {isFavorite ? <FaHeart className={css.favHeart} /> : <FaRegHeart className={css.heart} />}
+            <button onClick={handleFavorites}>
+              {!isFavorite ? <FaRegHeart className={css.heart} /> : <FaHeart className={css.favHeart} />}
             </button>
           </div>
         </div>
