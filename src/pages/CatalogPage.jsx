@@ -5,7 +5,7 @@ import {
   selectIsLoading,
   selectIsVisible,
 } from "../redux/campers/selectors";
-import { getCampers } from "../redux/campers/operations";
+import { getCampers, getCampersPage } from "../redux/campers/operations";
 import { useEffect, useState } from "react";
 import CampersList from "../components/campersList/CampersList";
 import Loader from "../components/Loader";
@@ -18,18 +18,17 @@ function CatalogPage() {
   const error = useSelector(selectError);
   const isVisible = useSelector(selectIsVisible);
   const [page, setPage] = useState(1);
-  let limit = 4;
 
   useEffect(() => {
-    dispatch(getCampers({ limit, page }));
-  }, [dispatch, limit, page]);
+    dispatch(getCampers());
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (page > 1) dispatch(getCampersPage(page));
+  }, [dispatch, page]);
 
   const onLoadMore = () => {
-    setPage(prevPage => {
-      const nextPage = prevPage +1;
-      dispatch(getCampers({page: nextPage}));
-      return nextPage;
-    })
+    setPage(page + 1);
   };
 
   return (
