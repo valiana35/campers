@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const favoritesCampersSlice = createSlice({
   name: "favorite",
   initialState: {
-    adverts: JSON.parse(localStorage.getItem("favorites")) || [],
+    adverts: JSON.parse(localStorage.getItem("favorite")) || [],
   },
   reducers: {
     toggleFavorite(state, action) {

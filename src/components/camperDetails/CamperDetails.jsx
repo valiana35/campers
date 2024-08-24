@@ -2,6 +2,7 @@ import { Link, Outlet } from "react-router-dom";
 import css from "./CamperDetails.module.css";
 import { LiaStarSolid } from "react-icons/lia";
 import { LuMapPin } from "react-icons/lu";
+import CamperForm from "../camperForm/CamperForm";
 
 const CamperDetails = ({ advert }) => {
   const { gallery, name, price, rating, reviews, location, description } =
@@ -35,6 +36,7 @@ const CamperDetails = ({ advert }) => {
         </Link>
       </div>
       <Outlet />
+      <CamperForm />
     </div>
   );
 };
