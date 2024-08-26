@@ -1,7 +1,13 @@
 import { Field, Form, Formik } from "formik";
+import DatePicker from "react-datepicker";
+import { FiCalendar } from "react-icons/fi";
 import css from "./CamperForm.module.css";
+import "react-datepicker/dist/react-datepicker.css";
+import { useState } from "react";
 
 const CamperForm = () => {
+  const [startDate, setStartDate] = useState(null);
+
   const handleSubmit = (values, actions) => {
     console.log(values);
     actions.resetForm();
@@ -30,7 +36,20 @@ const CamperForm = () => {
             placeholder="Email"
             className={css.email}
           />
-          <Field name="date" placeholder="Booking date" className={css.date}></Field>
+          <div className={css.dateBtn}>
+            <DatePicker
+              selected={startDate}
+              name="date"
+              onChange={(date) => setStartDate(date)}
+              minDate={new Date()}
+              disabledKeyboardNavigation
+              placeholderText="Booking date"
+              className={css.date}
+            />
+            <button className={css.button}>
+              <FiCalendar />
+            </button>
+          </div>
           <Field
             as="textarea"
             name="comment"

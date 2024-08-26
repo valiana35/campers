@@ -49,14 +49,28 @@
   outline: transparent;
 }
 
+.dateBtn {
+  position: relative;
+  align-items: center;
+}
+
 .date {
   border: none;
   border-radius: 10px;
-  padding: 18px 282px 18px 18px;
   width: 400px;
   height: 56px;
   background-color: #f7f7f7;
-  outline: transparent;
+  padding-left: 18px;
+  outline: none;
+}
+
+.button {
+  background-color: #f7f7f7;
+  font-size: 20px;
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 .comment {
