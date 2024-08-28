@@ -1,17 +1,39 @@
-import { Field, Form, Formik } from "formik";
-import DatePicker from "react-datepicker";
+import { useField, Field, Form, Formik, useFormikContext } from "formik";
 import { FiCalendar } from "react-icons/fi";
 import css from "./CamperForm.module.css";
 import "react-datepicker/dist/react-datepicker.css";
-import { useState } from "react";
+import * as Yup from "yup";
+import DatePicker from "react-datepicker";
 
 const CamperForm = () => {
-  const [startDate, setStartDate] = useState(null);
+  const DatePickerField = ({ ...props }) => {
+    const [field, , { setValue }] = useField(props);
+    return (
+      <DatePicker
+        {...field}
+        {...props}
+        selected={(field.value && new Date(field.value)) || null}
+        onChange={(val) => {
+          setValue(val);
+        }}
+      />
+    );
+  };
 
   const handleSubmit = (values, actions) => {
     console.log(values);
     actions.resetForm();
   };
+
+  const FeedbackSchema = Yup.object().shape({
+    username: Yup.string()
+      .min(2, "Too Short!")
+      .max(50, "Too Long!")
+      .required("Required"),
+    email: Yup.string().email("Must be a valid email!").required("Required"),
+    date: Yup.string().required("Required"),
+    comment: Yup.string().max(100),
+  });
 
   return (
     <div className={css.container}>
@@ -22,6 +44,7 @@ const CamperForm = () => {
       <Formik
         initialValues={{ username: "", email: "", date: "", comment: "" }}
         onSubmit={handleSubmit}
+        validationSchema={FeedbackSchema}
       >
         <Form className={css.form}>
           <Field
@@ -37,18 +60,17 @@ const CamperForm = () => {
             className={css.email}
           />
           <div className={css.dateBtn}>
-            <DatePicker
-              selected={startDate}
+            <DatePickerField
+              closeOnScroll={true}
               name="date"
-              onChange={(date) => setStartDate(date)}
               minDate={new Date()}
               disabledKeyboardNavigation
               placeholderText="Booking date"
               className={css.date}
             />
-            <button className={css.button}>
+            <span className={css.button}>
               <FiCalendar />
-            </button>
+            </span>
           </div>
           <Field
             as="textarea"
