@@ -32,7 +32,7 @@
 .name {
   border: none;
   border-radius: 10px;
-  padding: 18px 337px 18px 18px;
+  padding-left: 18px;
   width: 400px;
   height: 56px;
   background-color: #f7f7f7;
@@ -42,7 +42,7 @@
 .email {
   border: none;
   border-radius: 10px;
-  padding: 18px 341px 18px 18px;
+  padding-left: 18px;
   width: 400px;
   height: 56px;
   background-color: #f7f7f7;
@@ -77,7 +77,7 @@
   resize: none;
   border: none;
   border-radius: 10px;
-  padding: 18px 308px 76px 18px;
+  padding-left: 18px;
   width: 400px;
   height: 114px;
   background-color: #f7f7f7;

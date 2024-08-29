@@ -30,3 +30,31 @@
   height: 310px;
   object-fit: cover;
 }
+
+.link {
+  display: flex;
+  gap: 30px;
+  width: 902px;
+  height: 48px;
+}
+
+.linkFeatures {
+  font-family: "Inter", sans-serif;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 1.2;
+  color: #101828;
+}
+
+.linkReviews {
+  font-family: "Inter", sans-serif;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 1.2;
+  color: #101828;
+}
+
+.line {
+  stroke-width: 600px;
+  stroke: rgba(16, 24, 40, 0.2);
+}
