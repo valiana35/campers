@@ -31,30 +31,46 @@
   object-fit: cover;
 }
 
-.link {
+.btn {
+  position: relative;
+  padding-bottom: 24px;
   display: flex;
-  gap: 30px;
-  width: 902px;
-  height: 48px;
+  gap: 40px;
 }
 
-.linkFeatures {
-  font-family: "Inter", sans-serif;
+.btn::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 1px;
+  background-color: rgba(16, 24, 40, 0.2);
+  width: 100%;
+}
+
+.button {
+  border: none;
+  padding: 0;
+  background: transparent;
   font-weight: 600;
   font-size: 20px;
-  line-height: 1.2;
-  color: #101828;
+  cursor: pointer;
+  position: relative;
+  z-index: 1;
 }
 
-.linkReviews {
-  font-family: "Inter", sans-serif;
-  font-weight: 600;
-  font-size: 20px;
-  line-height: 1.2;
-  color: #101828;
+.infoButton:hover,
+.infoButton:focus {
+  background: transparent;
 }
 
-.line {
-  stroke-width: 600px;
-  stroke: rgba(16, 24, 40, 0.2);
+.selectedBtn::before {
+  content: "";
+  position: absolute;
+  bottom: -26px;
+  left: 0;
+  height: 5px;
+  background-color: #e44848;
+  width: 100%;
+  z-index: 2;
 }

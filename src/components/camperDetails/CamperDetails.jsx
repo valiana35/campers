@@ -1,11 +1,15 @@
-import { Link, Outlet } from "react-router-dom";
+import clsx from "clsx";
 import css from "./CamperDetails.module.css";
 import { LiaStarSolid } from "react-icons/lia";
 import { LuMapPin } from "react-icons/lu";
+import { useState } from "react";
 
 const CamperDetails = ({ advert }) => {
   const { gallery, name, price, rating, reviews, location, description } =
     advert;
+
+  const [activeTab, setActiveTab] = useState("features");
+
   return (
     <div>
       <h2>{name}</h2>
@@ -27,15 +31,26 @@ const CamperDetails = ({ advert }) => {
         ))}
       </ul>
       <p>{description}</p>
-      <div className={css.link}>
-        <Link to="features" className={css.linkFeatures}>
+      <div className={css.btn}>
+        <button
+          type="button"
+          onClick={() => setActiveTab("features")}
+          className={clsx(css.button, {
+            [css.selectedBtn]: activeTab === "features",
+          })}
+        >
           Features
-        </Link>
-        <Link to="reviews" className={css.linkReviews}>
+        </button>
+        <button
+          type="button"
+          onClick={() => setActiveTab("reviews")}
+          className={clsx(css.button, {
+            [css.selectedBtn]: activeTab === "reviews",
+          })}
+        >
           Reviews
-        </Link>
+        </button>
       </div>
-      <Outlet />
     </div>
   );
 };
