@@ -3,6 +3,8 @@ import css from "./CamperDetails.module.css";
 import { LiaStarSolid } from "react-icons/lia";
 import { LuMapPin } from "react-icons/lu";
 import { useState } from "react";
+import Features from "../features/Features.jsx";
+import Reviews from "../reviews/Reviews.jsx";
 
 const CamperDetails = ({ advert }) => {
   const { gallery, name, price, rating, reviews, location, description } =
@@ -51,6 +53,11 @@ const CamperDetails = ({ advert }) => {
           Reviews
         </button>
       </div>
+      {activeTab === "features" ? (
+        <Features />
+      ) : (
+        <Reviews />
+      )}
     </div>
   );
 };
