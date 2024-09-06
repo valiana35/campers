@@ -56,7 +56,7 @@ const CamperDetails = ({ advert }) => {
       {activeTab === "features" ? (
         <Features advert={advert}/>
       ) : (
-        <Reviews />
+        <Reviews reviews={reviews}/>
       )}
     </div>
   );

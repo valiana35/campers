@@ -1,6 +1,6 @@
 import { LiaStarSolid } from "react-icons/lia";
 import { LuMapPin } from "react-icons/lu";
-import { IoPeopleOutline } from "react-icons/io5";
+import { BsPeople } from "react-icons/bs";
 import { TbAutomaticGearbox } from "react-icons/tb";
 import { MdOutlineLocalGasStation } from "react-icons/md";
 import { TbToolsKitchen2 } from "react-icons/tb";
@@ -46,6 +46,11 @@ const Camper = ({ advert }) => {
   const handleFavorites = () => {
     dispatch(toggleFavorite(advert._id));
   };
+
+  function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  }
+
   return (
     <div className={css.container}>
       <div>
@@ -57,7 +62,11 @@ const Camper = ({ advert }) => {
           <div className={css.price}>
             <h2>€{price}.00</h2>
             <button onClick={handleFavorites}>
-              {!isFavorite ? <FaRegHeart className={css.heart} /> : <FaHeart className={css.favHeart} />}
+              {!isFavorite ? (
+                <FaRegHeart className={css.heart} />
+              ) : (
+                <FaHeart className={css.favHeart} />
+              )}
             </button>
           </div>
         </div>
@@ -73,19 +82,33 @@ const Camper = ({ advert }) => {
         <p className={css.text}>{description.slice(0, 68)}...</p>
         <ul className={css.list}>
           <li className={css.item}>
-            <IoPeopleOutline /> {adults} adults
+            <BsPeople /> {adults} adults
           </li>
           <li className={css.item}>
-            <TbAutomaticGearbox /> {transmission}
+            <TbAutomaticGearbox /> {capitalizeFirstLetter(transmission)}
           </li>
           <li className={css.item}>
-            <MdOutlineLocalGasStation /> {engine}
+            <MdOutlineLocalGasStation /> {capitalizeFirstLetter(engine)}
           </li>
-          <li className={css.item}>{kitchen && <TbToolsKitchen2 />} kitchen</li>
+          <li className={css.item}>
+            {kitchen && (
+              <div className={css.aboutItem}>
+                <TbToolsKitchen2 /> <p>kitchen</p>
+              </div>
+            )}
+          </li>
           <li className={css.item}>
             <IoBedOutline /> {beds} beds
           </li>
-          <li className={css.item}>{airConditioner && <BsWind />} AC</li>
+          <li className={css.item}>
+            {" "}
+            {airConditioner && (
+              <div className={css.aboutItem}>
+                <BsWind />
+                <p>AC</p>
+              </div>
+            )}
+          </li>
         </ul>
         <button className={css.btn} onClick={openModal}>
           Show more

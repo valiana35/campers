@@ -68,12 +68,23 @@
 }
 
 .item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 6px;
   border-radius: 100px;
   padding: 12px 18px;
   width: 126px;
   height: 44px;
   background: #f2f4f7;
   mix-blend-mode: multiply;
+}
+
+.aboutItem {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 6px;
 }
 
 .btn {
