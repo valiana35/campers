@@ -1,7 +1,13 @@
+.catalog {
+    display: flex;
+    flex-direction: row;
+    padding-top: 90px;
+    justify-content: space-between;
+    gap: 20px;
+}
+
 .list {
     display: flex;
     flex-direction: column;
     gap: 20px;
-    justify-content: center;
-    padding-top: 90px;
 }
