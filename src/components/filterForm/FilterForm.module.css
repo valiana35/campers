@@ -1,10 +1,38 @@
-.container {
+.form {
   display: flex;
   flex-direction: column;
   margin-right: 20px;
+  width: 360px;
+  gap: 10px;
 }
 
-.title {
+.input {
+  border-radius: 10px;
+  padding-left: 36px;
+  width: 360px;
+  height: 56px;
+  background: #f7f7f7;
+  border: none;
+  outline: transparent;
+}
+
+.pin {
+  color: #101828;
+  position: absolute;
+  display: flex;
+  margin-left: 16px;
+  margin-top: 18px;
+}
+
+.wrap {
+  position: relative;
+}
+
+.formGroup {
+  border: none;
+}
+
+.groupTitle {
   font-family: "Inter", sans-serif;
   font-weight: 600;
   font-size: 20px;
@@ -14,17 +42,17 @@
 }
 
 .line {
-    max-width: 100%;
-    height: 1px;
-    background-color: rgba(16, 24, 40, 0.1);
-    margin-top: 20px;
-    margin-bottom: 20px;
-  }
+  max-width: 100%;
+  height: 1px;
+  background-color: rgba(16, 24, 40, 0.1);
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
 
 .formList {
   display: flex;
-  flex-direction: row;
-  gap: 12px;
+  flex-wrap: wrap;
+  gap: 10px;
 }
 
 .icon {
@@ -35,9 +63,16 @@
   align-items: center;
   justify-content: center;
   text-align: center;
-  width: 112px;
+  width: calc((100% - 2 * 10px) / 3);
   height: 95px;
-  mix-blend-mode: multiply;
+}
+
+.icon:has(input[type="radio"]:checked) {
+  border: 1px solid #e44848;
+}
+
+.icon:has(input[type="checkbox"]:checked) {
+  border: 1px solid #e44848;
 }
 
 .text {
@@ -47,4 +82,29 @@
   line-height: 1.25;
   color: #101828;
   margin-bottom: 0;
+}
+
+.wind {
+  width: 24px;
+  height: 24px;
+}
+
+.btn {
+  border-radius: 200px;
+  padding: 16px 60px;
+  width: 173px;
+  height: 56px;
+  background: #e44848;
+  font-family: "Inter", sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: -0.01em;
+  color: #fff;
+  margin-top: 30px;
+  margin-left: 10px;
+}
+
+.btn:hover {
+  background: #d84343;
 }
