@@ -71,24 +71,33 @@ const Features = ({ advert }) => {
             {beds} beds
           </li>
           <li className={css.about}>
-            <TbAirConditioning />
-            {airConditioner} air conditioner
+            {airConditioner && (
+              <div className={css.aboutItem}>
+                <TbAirConditioning />
+                <p>air conditioner</p>
+              </div>
+            )}
           </li>
           <li className={css.about}>
             {CD && (
               <div className={css.aboutItem}>
-                <VscDashboard /><p>CD</p>
+                <VscDashboard />
+                <p>CD</p>
               </div>
             )}
           </li>
           <li className={css.about}>
             {radio && (
               <div className={css.aboutItem}>
-                <HiOutlineRadio /><p>radio</p>
+                <HiOutlineRadio />
+                <p>radio</p>
               </div>
             )}
           </li>
-          <li className={css.about}><TbCooker />{hob} hob</li>
+          <li className={css.about}>
+            <TbCooker />
+            {hob} hob
+          </li>
         </ul>
         <h2 className={css.title}>Vehicle details</h2>
         <div className={css.line}></div>

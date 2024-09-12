@@ -5,19 +5,45 @@ import { TbToolsKitchen2 } from "react-icons/tb";
 import { LuTv } from "react-icons/lu";
 import { LuShowerHead } from "react-icons/lu";
 import { LuMapPin } from "react-icons/lu";
+import { useDispatch } from "react-redux";
+import {
+  setDetails,
+  setForm,
+  setLocation,
+} from "../../redux/filterCampers/slice.js";
 
 const FilterForm = () => {
+  const dispatch = useDispatch();
+
+  const handlesubmit = (evt) => {
+    evt.preventDefault();
+    const form = evt.target;
+    const { location, airConditioner, automatic, kitchen, TV, shower, type } = form.elements;
+
+    dispatch(setLocation(location.value));
+    dispatch(setDetails(airConditioner, automatic, kitchen, TV, shower,));
+    dispatch(setForm(type.value));
+
+    form.reset();
+  };
+
   return (
-    <form className={css.form}>
+    <form onSubmit={handlesubmit} className={css.form}>
       <fieldset className={css.formGroup}>
         <label>
           Location
           <div className={css.wrap}>
-          <LuMapPin className={css.pin}/>
-          <input type="text" className={css.input} placeholder="City" />
+            <LuMapPin className={css.pin} />
+            <input
+              type="text"
+              name="location"
+              className={css.input}
+              placeholder="City"
+            />
           </div>
         </label>
       </fieldset>
+      <h2 className={css.title}>Filters</h2>
       <fieldset className={css.formGroup}>
         <legend className={css.groupTitle}>Vehicle equipment</legend>
         <div className={css.line}></div>
@@ -25,8 +51,7 @@ const FilterForm = () => {
           <label className={css.icon}>
             <input
               type="checkbox"
-              value="van"
-              name="equipment"
+              name="airConditioner"
               style={{ display: "none" }}
             />
             <BsWind className={css.wind} />
@@ -35,8 +60,7 @@ const FilterForm = () => {
           <label className={css.icon}>
             <input
               type="checkbox"
-              value="fullyIntegration"
-              name="equipment"
+              name="automatic"
               style={{ display: "none" }}
             />
             <TbAutomaticGearbox className={css.wind} />
@@ -45,8 +69,7 @@ const FilterForm = () => {
           <label className={css.icon}>
             <input
               type="checkbox"
-              value="alcove"
-              name="equipment"
+              name="kitchen"
               style={{ display: "none" }}
             />
             <TbToolsKitchen2 className={css.wind} />
@@ -55,8 +78,7 @@ const FilterForm = () => {
           <label className={css.icon}>
             <input
               type="checkbox"
-              value="alcove"
-              name="equipment"
+              name="TV"
               style={{ display: "none" }}
             />
             <LuTv className={css.wind} />
@@ -65,8 +87,7 @@ const FilterForm = () => {
           <label className={css.icon}>
             <input
               type="checkbox"
-              value="alcove"
-              name="equipment"
+              name="shower"
               style={{ display: "none" }}
             />
             <LuShowerHead className={css.wind} />
@@ -81,8 +102,8 @@ const FilterForm = () => {
           <label className={css.icon}>
             <input
               type="radio"
-              value="van"
               name="type"
+              value="panelTruck"
               style={{ display: "none" }}
             />
             <svg width="40" height="28">
@@ -93,8 +114,8 @@ const FilterForm = () => {
           <label className={css.icon}>
             <input
               type="radio"
-              value="fullyIntegration"
               name="type"
+              value="fullyIntegrated"
               style={{ display: "none" }}
             />
             <svg width="40" height="28">
@@ -105,8 +126,8 @@ const FilterForm = () => {
           <label className={css.icon}>
             <input
               type="radio"
-              value="alcove"
               name="type"
+              value="alcove"
               style={{ display: "none" }}
             />
             <svg width="40" height="28">
@@ -116,7 +137,9 @@ const FilterForm = () => {
           </label>
         </div>
       </fieldset>
-      <button type="submit" className={css.btn}>Search</button>
+      <button type="submit" className={css.btn}>
+        Search
+      </button>
     </form>
   );
 };

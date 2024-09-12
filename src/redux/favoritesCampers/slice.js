@@ -17,4 +17,4 @@ const favoritesCampersSlice = createSlice({
   },
 });
 export const { toggleFavorite } = favoritesCampersSlice.actions;
-export const favoriteReduser = favoritesCampersSlice.reducer;
+export const favoriteReducer = favoritesCampersSlice.reducer;

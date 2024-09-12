@@ -1,17 +1,17 @@
 import { useSelector } from "react-redux";
 import Camper from "../camper/Camper";
-import { selectAdverts } from "../../redux/campers/selectors";
 import css from "./CampersList.module.css";
 import FilterForm from "../filterForm/FilterForm";
+import { selectFilterCampers } from "../../redux/filterCampers/selectors";
 
 const CampersList = () => {
-  const adverts = useSelector(selectAdverts);
+  const visibleCampers = useSelector(selectFilterCampers);
 
   return (
     <div className={css.catalog}>
       <FilterForm />
       <ul className={css.list}>
-        {adverts.map((advert) => (
+        {visibleCampers.map((advert) => (
           <li key={advert._id}>
             <Camper advert={advert} />
           </li>
